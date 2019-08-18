@@ -26,4 +26,15 @@ RSpec.describe FileReader do
     expect(FileReader.new(file: expect).raw_temp).to eq(desired)
     expect(FileReader.read(file: expect)).to eq(desired)
   end
+
+  it 'Reads the first line of the file' do
+    file = 'w1-slave-test-file'
+    expect(FileReader.read(file: file, method: :first_line).is_a?(String)).to be true
+  end
+
+  it 'Reads the test file and should expect YES' do
+    file = 'w1-slave-test-file'
+    expect = FileReader.read(file: file, method: :check)
+    expect(expect).to eq('YES')
+  end
 end
