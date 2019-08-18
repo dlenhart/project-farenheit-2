@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+cd ../app
+ruby run.rb >> ../logs/temp_raw_log.log
