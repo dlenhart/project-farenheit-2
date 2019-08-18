@@ -19,12 +19,34 @@ class FileReader
     exit(1)
   end
 
+  def first_line
+    read_file.first.strip
+  end
+
   def split_last
     last_line.to_s.gsub(/\s+/m, ' ').strip.split(' ')
   end
 
+  def check
+    first_line.chars.last(3).join
+  end
+
+  def die(tries)
+    puts "Unable to gather a temperature with #{tries} tries!"
+    exit(1)
+  end
+
   def raw_temp
-    split_last.last.strip.split('=').last.to_i
+    i = 0
+    while check != 'YES'
+      check
+      i += 1
+      puts "Having trouble reading w1 file .. #{i} - tries"
+      sleep(0.4)
+      break if i == 20
+    end
+
+    check != 'YES' ? die(i) : split_last.last.strip.split('=').last.to_i
   end
 
   def self.read(file:, method: :raw_temp)
