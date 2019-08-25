@@ -41,7 +41,7 @@ class FileReader
     while check != 'YES'
       check
       i += 1
-      puts "Having trouble reading w1 file .. #{i} - tries"
+      puts "#{i} - tries"
       sleep(0.4)
       break if i == 20
     end
