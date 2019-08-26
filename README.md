@@ -2,13 +2,16 @@
 
 This is a Ruby implementation of my project-ferenheit experiment found here: [project-ferenheit](https://github.com/dlenhart/project-farenheit). This reads & calculates temperature on DS18B20 sensor.
 
+This is simply a tinker project!
+
 ## Installation
+
+See [project-ferenheit](https://github.com/dlenhart/project-farenheit) for hardware set-up.
 
 Execute:
 
     $ bundle install
 
-Update
 
 ## Scripts
 

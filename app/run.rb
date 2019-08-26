@@ -16,10 +16,10 @@ data = "../data/#{time.gsub(/\s+/m, ' ').strip.split(' ').first}.log"
 puts ' '
 puts '---STARTING-------------------------------------'
 temp = FileReader.read(file: file)
-f = Temperature.new.ferenheit(temp)
+f = Temperature.new(temp).ferenheit
 puts "Determining degree in Ferenheit...\n#{f}"
 
-c = Temperature.new.celcius(temp)
+c = Temperature.new(temp).celcius
 puts "Determining degree in Celcius...\n#{c}"
 
 puts 'recording to datafile'
