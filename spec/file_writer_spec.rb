@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require_relative '../app/file_writer'
+require_relative '../app/helpers/file_writer'
 
 RSpec.describe FileWriter do
   it 'Successfuly writes to a file' do

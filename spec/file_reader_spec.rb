@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require_relative '../app/file_reader'
+require_relative '../app/helpers/file_reader'
 
 RSpec.describe FileReader do
   it 'Opens the file into an array' do
