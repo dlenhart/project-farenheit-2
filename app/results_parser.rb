@@ -8,20 +8,20 @@
 # usage: ruby results_parser.rb "temperatures.log" "/Users/drewlenhart/Desktop/"
 
 require 'pry'
-require './file_writer'
+require './helpers/file_writer'
+require './helpers/json_validator'
 
-puts 'Beginning file parsing....'
+puts ' '
+puts '---STARTING------------------------------------'
 
 if ARGV.length != 2
   puts 'Expecting TWO arguments (file location, and save location)!!'
   exit
 end
 
-file = ARGV[0]
-save_location = ARGV[1]
 data = []
 
-text = File.open(file).read
+text = File.open(ARGV[0]).read
 text.gsub!(/\r\n?/, "\n")
 
 text.each_line do |line|
@@ -37,7 +37,12 @@ n = { data: [] }
 n.merge!(data: data)
 json = n.to_json
 
-puts 'Writing to file...'
-saved = "#{save_location}/#{Time.new.strftime('%m-%d-%Y')}.json"
-FileWriter.write(file: saved, msg: json)
-puts 'Complete!'
+if JSONValidator.valid_json?(json)
+  puts 'json is valid, writing to file...'
+  saved = "#{ARGV[1]}/#{Time.new.strftime('%m-%d-%Y')}.json"
+  FileWriter.write(file: saved, msg: json)
+else
+  puts 'There appears to be an issue with the json!'
+end
+
+puts '---COMPLETE------------------------------------'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require './file_reader'
-require './file_writer'
+require './helpers/file_reader'
+require './helpers/file_writer'
 require './database/database'
 require './temperature/temperature'
 
@@ -14,7 +14,7 @@ time = Time.new.strftime('%m-%d-%Y %k:%M')
 data = "../data/#{time.gsub(/\s+/m, ' ').strip.split(' ').first}.log"
 
 puts ' '
-puts '---STARTING--------------------------------------'
+puts '---STARTING-------------------------------------'
 temp = FileReader.read(file: file)
 f = Temperature.new.ferenheit(temp)
 puts "Determining degree in Ferenheit...\n#{f}"
