@@ -11,6 +11,12 @@ require 'pry'
 require './helpers/file_writer'
 require './helpers/json_validator'
 
+def fix_date(date)
+  d = date.split("-")
+  new = "#{d[2]}-#{d[0]}-#{d[1]}"
+  new
+end
+
 puts ' '
 puts '---STARTING------------------------------------'
 
@@ -29,7 +35,7 @@ text.each_line do |line|
   split = time[1].split(':')[1]
   next unless split.to_s.casecmp('00').zero?
 
-  timestamp = "#{time[0]}T#{time[1]}:00"
+  timestamp = "#{fix_date(time[0])}T#{time[1]}:00"
   data << { "timestamp": timestamp, "value": { "PM2.5": time[5] } }
 end
 
