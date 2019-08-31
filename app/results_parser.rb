@@ -52,8 +52,8 @@ n.merge!(data: data)
 json = n.to_json
 
 if JSONValidator.valid_json?(json)
-  puts 'json is valid, writing to file...'
-  saved = "#{ARGV[1]}/#{Time.new.strftime('%m-%d-%Y')}.json"
+  saved = "#{ARGV[1]}/#{ARGV[0].split('/').last.split('.')[0]}.json"
+  puts "json is valid, writing to file...#{saved}"
   FileWriter.write(file: saved, msg: json)
 else
   puts 'There appears to be an issue with the json!'
