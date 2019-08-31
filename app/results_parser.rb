@@ -12,9 +12,17 @@ require './helpers/file_writer'
 require './helpers/json_validator'
 
 def fix_date(date)
-  d = date.split("-")
+  d = date.split('-')
   new = "#{d[2]}-#{d[0]}-#{d[1]}"
   new
+end
+
+def time_parse(line)
+  line.gsub(/\s+/m, ' ').strip.split(' ')
+end
+
+def split_time(time)
+  time[1].split(':')[1]
 end
 
 puts ' '
@@ -31,8 +39,8 @@ text = File.open(ARGV[0]).read
 text.gsub!(/\r\n?/, "\n")
 
 text.each_line do |line|
-  time = line.gsub(/\s+/m, ' ').strip.split(' ')
-  split = time[1].split(':')[1]
+  time = time_parse(line)
+  split = split_time(time)
   next unless split.to_s.casecmp('00').zero?
 
   timestamp = "#{fix_date(time[0])}T#{time[1]}:00"
