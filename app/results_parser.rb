@@ -25,7 +25,6 @@ def split_time(time)
   time[1].split(':')[1]
 end
 
-puts ' '
 puts '---STARTING------------------------------------'
 
 if ARGV.length != 2
@@ -43,8 +42,8 @@ text.each_line do |line|
   split = split_time(time)
   next unless split.to_s.casecmp('00').zero?
 
-  timestamp = "#{fix_date(time[0])}T#{time[1]}:00"
-  data << { "timestamp": timestamp, "value": { "PM2.5": time[5] } }
+  data << { "timestamp": "#{fix_date(time[0])}T#{time[1]}:00",
+    "value": { "PM2.5": time[5] } }
 end
 
 n = { data: [] }
@@ -53,10 +52,10 @@ json = n.to_json
 
 if JSONValidator.valid_json?(json)
   saved = "#{ARGV[1]}/#{ARGV[0].split('/').last.split('.')[0]}.json"
-  puts "json is valid, writing to file...#{saved}"
+  puts "JSON is valid, saving to file...#{saved}"
   FileWriter.write(file: saved, msg: json)
 else
-  puts 'There appears to be an issue with the json!'
+  puts 'JSON is not valid!'
 end
 
 puts '---COMPLETE------------------------------------'
