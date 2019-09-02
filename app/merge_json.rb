@@ -3,7 +3,6 @@
 # This script will merge multiple JSON files into one
 # e.x.  ruby merge_json.rb "folder location" "output location"
 
-require 'pry'
 require 'Find'
 require './helpers/file_writer'
 require './helpers/json_validator'

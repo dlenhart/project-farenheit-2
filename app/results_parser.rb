@@ -7,7 +7,6 @@
 
 # usage: ruby results_parser.rb "temperatures.log" "/Users/drewlenhart/Desktop/"
 
-require 'pry'
 require './helpers/file_writer'
 require './helpers/json_validator'
 require './helpers/parsing'
