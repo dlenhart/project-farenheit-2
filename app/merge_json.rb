@@ -19,15 +19,16 @@ end
 data = []
 
 Find.find(ARGV[0]) do |f|
-   next if File.extname(f) != ".json"
-   file = File.read(f)
-   (data << JSON.parse(file)['data']).flatten!
+  next if File.extname(f) != '.json'
+
+  file = File.read(f)
+  (data << JSON.parse(file)['data']).flatten!
 end
 
 json = Parser_helper.convert_to_json(data)
 
 if JSONValidator.valid_json?(json)
-  saved = "yest2.json"
+  saved = 'yest2.json'
   puts "json is valid, writing to file...#{saved}"
   FileWriter.write(file: saved, msg: json)
 else

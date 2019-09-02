@@ -12,7 +12,6 @@ require './helpers/file_writer'
 require './helpers/json_validator'
 require './helpers/parsing'
 
-
 puts '---STARTING------------------------------------'
 
 if ARGV.length != 2
@@ -26,12 +25,12 @@ text = File.open(ARGV[0]).read
 text.gsub!(/\r\n?/, "\n")
 
 text.each_line do |line|
-  time = Parser_helper::time_parse(line)
-  split = Parser_helper::split_time(time)
+  time = Parser_helper.time_parse(line)
+  split = Parser_helper.split_time(time)
   next unless split.to_s.casecmp('00').zero?
 
-  data << { "timestamp": "#{Parser_helper::fix_date(time[0])}T#{time[1]}:00",
-    "value": { "PM2.5": time[5] } }
+  data << { "timestamp": "#{Parser_helper.fix_date(time[0])}T#{time[1]}:00",
+            "value": { "PM2.5": time[5] } }
 end
 
 json = Parser_helper.convert_to_json(data)
