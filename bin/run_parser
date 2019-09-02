@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+# Where temperature log file is stored, likely /data
+DATA_PATH=
+
+# Location of results_parser.rb
+RUN_PATH=
+
+# Location to save JSON
+SAVE_PATH=
+
+CURRENTDATE=`date +"%m-%d-%Y"`
+
+# Log file to parse
+LOG_FILE=${DATA_PATH}/${CURRENTDATE}.log
+
+if test -f "$LOG_FILE"; then
+    echo "$LOG_FILE exist!"
+    echo " Parsing file..... "
+
+    cd ${RUN_PATH}
+
+    ruby results_parser.rb ${LOG_FILE} ${SAVE_PATH}
+else
+	echo "File not found!"
+fi
