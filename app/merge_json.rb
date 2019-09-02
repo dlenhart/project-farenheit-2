@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# TODO: - merge multiple json files into one.
-# ruby merge_json.rb "folder location" "output location"
+# This script will merge multiple JSON files into one
+# e.x.  ruby merge_json.rb "folder location" "output location"
 
 require 'pry'
 require 'Find'

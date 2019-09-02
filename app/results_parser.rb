@@ -25,6 +25,12 @@ def split_time(time)
   time[1].split(':')[1]
 end
 
+def convert_to_json(data)
+  n = { data: [] }
+  n.merge!(data: data)
+  n.to_json
+end
+
 puts '---STARTING------------------------------------'
 
 if ARGV.length != 2
@@ -46,9 +52,7 @@ text.each_line do |line|
     "value": { "PM2.5": time[5] } }
 end
 
-n = { data: [] }
-n.merge!(data: data)
-json = n.to_json
+json = convert_to_json(data)
 
 if JSONValidator.valid_json?(json)
   saved = "#{ARGV[1]}/#{ARGV[0].split('/').last.split('.')[0]}.json"
