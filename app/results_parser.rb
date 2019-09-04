@@ -10,6 +10,7 @@
 require './helpers/file_writer'
 require './helpers/json_validator'
 require './helpers/parsing'
+require 'pry'
 
 puts '---STARTING------------------------------------'
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 module Parser_helper
   def self.fix_date(date)
     d = date.split('-')
