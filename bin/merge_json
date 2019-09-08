@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+
+# Shell script to run json merge...
+
+JSON_PATH=
+OUTPUT=
+RUN_PATH=
+
+if [ -d $JSON_PATH ]
+then
+    echo "Removing previous file"
+    rm ${OUTPUT}/latest-merged.json
+    echo "Merging json files to latest."
+    cd ${RUN_PATH}
+
+    ruby merge_json.rb ${JSON_PATH} ${OUTPUT}
+
+    echo "restarting webserver"
+    sudo service nginx restart
+else
+    echo "Error: Directory $JSON_PATH does not exists."
+fi
