@@ -14,9 +14,6 @@ then
     cd ${RUN_PATH}
 
     ruby merge_json.rb ${JSON_PATH} ${OUTPUT}
-
-    echo "restarting webserver"
-    sudo service nginx restart
 else
     echo "Error: Directory $JSON_PATH does not exists."
 fi
